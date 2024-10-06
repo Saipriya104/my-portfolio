@@ -1,95 +1,83 @@
+// src/app/page.js
+"use client";
+
+import { Button } from "@mui/material";
 import Image from "next/image";
-import styles from "./page.module.css";
+import myImage from "./images/photo.png"; // This image can stay here if only used internally
 
-export default function Home() {
+export default function HomePage() {
+  const handleDownloadResume = () => {
+    // Create a temporary link element
+    const link = document.createElement("a");
+    link.href = "/resume.pdf"; // The path to the resume in the public folder
+    link.download = "Sai_Priya_Resume.pdf"; // Set the download attribute with the desired file name
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link); // Clean up by removing the link
+  };
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "40px",
+      }}
+    >
+      {/* Left section for content */}
+      <div style={{ flex: 1 }}>
+        <h2>Hey there! 👋</h2>
+        <h1>I am Sai Priya Doddi — I design and build software solutions.</h1>
+        <p>
+          With experience in software engineering, I have worked on various
+          projects in different sectors. I specialize in creating scalable web
+          applications and enjoy solving complex challenges.
+        </p>
+        <Button
+          style={{
+            padding: "10px 20px",
+            marginTop: "20px",
+            borderRadius: "5px",
+            border: "none",
+            backgroundColor: "#000",
+            color: "#fff",
+            cursor: "pointer",
+          }}
+          onClick={handleDownloadResume}
+        >
+          Download Resume ⬇️
+        </Button>
+      </div>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+      {/* Right section for image */}
+      <div
+        style={{
+          flex: 1,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            width: "200px",
+            height: "200px",
+            borderRadius: "50%",
+            overflow: "hidden",
+            backgroundColor: "#ddd",
+          }}
+        >
+          {/* Replace placeholder with an actual image */}
+          <Image
+            src={myImage}
+            alt="SaiPriya"
+            layout="responsive"
+            width={200}
+            height={200}
+          />
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
   );
 }
